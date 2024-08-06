@@ -1,0 +1,13 @@
+package chpt04.sec02;
+
+public class Switch_Exam {
+
+	public static void main(String[] args) {
+		
+		int num = (int)(Math.random()*10)+ 8; 
+		System.out.println(num);
+		
+
+	}
+
+}

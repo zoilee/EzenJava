@@ -1,0 +1,10 @@
+package chpt05.sec01;
+
+public class Equals_Exam {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

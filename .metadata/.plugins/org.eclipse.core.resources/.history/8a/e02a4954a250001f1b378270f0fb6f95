@@ -1,0 +1,14 @@
+package chpt06.sec01;
+
+public class Car {
+	//ÇÊµå
+	String model;
+	boolean start;
+	int speed;
+	
+	
+	Car(model, start, speed){
+		
+	}
+		
+}

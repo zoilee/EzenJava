@@ -1,0 +1,17 @@
+package chpt04.sec02;
+
+public class Break_Exam {
+
+	public static void main(String[] args) {
+		
+		for(int i = 0; i<=10; i++) {
+			System.out.println(i);
+			if(i==5) {
+				break;
+			}
+			
+		}
+		System.out.println("시스템 종료");
+	}
+
+}

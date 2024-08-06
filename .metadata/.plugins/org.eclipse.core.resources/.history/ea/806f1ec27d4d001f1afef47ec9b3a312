@@ -1,0 +1,15 @@
+package chapt03.sec03;
+
+public class Assignment_Exam {
+
+	public static void main(String[] args) {
+		
+		int rs = 0;
+		rs += 10;
+		System.out.println(rs);
+		
+		
+
+	}
+
+}

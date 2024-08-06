@@ -1,0 +1,17 @@
+package chpt06.sec01;
+
+public class Car {
+	//필드
+	String model;
+	boolean start;
+	int speed;
+	
+	
+	Car(){
+		model="현대";
+		start=true;
+		speed=80;
+	}
+	
+	
+}

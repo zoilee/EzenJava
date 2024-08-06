@@ -1,0 +1,23 @@
+package chpt04.sec01;
+
+import java.util.Scanner;
+
+public class IfElse_Exam {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int score = scanner.nextInt();
+		
+		if(score >= 90) {
+			System.out.println("당신의 점수는 " + score + " 이고 A등급입니다.");
+		}else if(score >=80 & score <= 89){
+			System.out.println("당신의 점수는 " + score + " 이고 B등급입니다.");
+		}else if (score >=70 & score <= 79) {
+			System.out.println("당신의 점수는 " + score + " 이고 C등급입니다.");
+		}else if (score >=60 & score <= 69) {
+			System.out.println("당신의 점수는 " + score + " 이고 D등급입니다.");
+		}else {
+			System.out.println("당신의 점수는 " + score + " 이고 낙제입니다.");
+		}
+	}
+}

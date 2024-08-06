@@ -1,0 +1,15 @@
+package chpt04.sec02;
+
+public class text02 {
+	public static void main(String[] args) {
+		boolean first = true;
+		while(true) {
+			int d1 = (int)(Math.random()*6+1);
+			int d2 = (int)(Math.random()*6+1);
+			
+			if(d1 + d2 == 5) {
+				first = false;
+			}
+		}
+	}
+}

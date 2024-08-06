@@ -1,0 +1,16 @@
+package chpt04.sec02;
+
+public class test04 {
+
+	public static void main(String[] args) {
+		int i;
+		int s;
+		for(i=0;i<=4;i++) {
+			System.out.print("*");
+			for(s=0;s<4;s++) {
+				System.out.print("*");
+			}
+		}
+	}
+
+}

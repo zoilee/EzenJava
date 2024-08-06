@@ -1,0 +1,10 @@
+package chpt08.sec03;
+
+public class Calculator_Exam {
+
+	public static void main(String[] args) {
+		powerOn(){};
+
+	}
+
+}

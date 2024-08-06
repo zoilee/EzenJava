@@ -1,0 +1,13 @@
+package chpt05.sec02;
+
+public class Array01_Exam {
+
+	public static void main(String[] args) {
+		
+		String[] season = {"Spring", "Summer", "Fall", "Winter"};
+		
+		//배열의 항목찾기
+		System.out.println("3월부터 5월은" + season[0] + " 입니다.");
+	}
+
+}

@@ -1,0 +1,12 @@
+package chpt04.sec01;
+
+public class RCP_Exam {
+
+	public static void main(String[] args) {
+		int a = (int)(Math.random()*4)+1;
+		System.out.println(a);
+
+	}
+
+}
+	

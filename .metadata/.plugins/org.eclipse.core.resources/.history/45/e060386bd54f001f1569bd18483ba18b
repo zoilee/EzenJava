@@ -1,0 +1,12 @@
+package chpt05.sec02;
+
+public class Array02_Exam {
+
+	public static void main(String[] args) {
+		
+		int[] arrNum = {12,14,15,50};
+		//arrNum = {12,14,15,50};
+
+	}
+
+}

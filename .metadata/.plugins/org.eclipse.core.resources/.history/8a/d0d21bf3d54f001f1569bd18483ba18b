@@ -1,0 +1,21 @@
+package chpt05.sec02;
+
+public class Array02_Exam {
+
+	public static void main(String[] args) {
+		
+		int[] arrNum = {12,14,15,50};
+		//arrNum = {12,14,15,50};
+		for(int num : arrNum) {
+			System.out.println(num);
+		};
+		
+		String[] arrStr;
+		arrStr = new String[] {"Ã¶¼ö","¹Î¼ö","¿µÈñ"}; 
+		for(String num : arrStr) {
+			System.out.println(num);
+		};
+
+	}
+
+}

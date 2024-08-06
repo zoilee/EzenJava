@@ -1,0 +1,9 @@
+package chpt04.sec02;
+
+public class text02 {
+	public static void main(String[] args) {
+		while(true) {
+			int d1 = (int)(Math.random()*6+1);
+		}
+	}
+}

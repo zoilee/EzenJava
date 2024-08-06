@@ -1,0 +1,107 @@
+package chpt04.sec01;
+
+import java.util.Scanner;
+
+public class VendingMachine_Exam {
+	
+	//필드
+	//생성자
+	//매소드
+	public static final int Max = 10; //메뉴의 최대 갯수는 10개
+	
+	//전역변수
+	static String[] box = new String[Max];
+	static int[] price = new int[Max];
+	static int[] stock = new int[Max];
+	static int count = 3; //메뉴의 갯수
+	static int admin = 1234; //관리자 비번
+	static int profit = 0; //총수익
+	static Scanner sc = new Scanner(System.in);
+	
+	//자판기 초기화
+	public static void init() {
+		box[0] = "콜라";
+		price[0] = 1000;
+		stock[0] = 3;
+		
+		box[1] = "사이다";
+		price[1] = 1200;
+		stock[1] = 3;
+		
+		box[2] = "환타";
+		price[2] = 1500;
+		stock[2] = 3;
+	}
+	//유저 인터페이스 담당 메소드
+	public static void user() {
+		Boolean first = true;
+		int money = 0;
+		
+		while(true) {
+			System.out.println("++++++++++++++++++++++++++++++++++++++");
+			System.out.println("시원한 음료수 자판기 입니다. (번호: 상품(재고))");
+			//번호: 메뉴(가격) - 재고
+			for(int i=0; i<count;i++) {
+				System.out.print((i+1) + ":" +box[i]+"(" + price[i] + "원) -" + stock[i]+"개     ");
+			}
+			System.out.println();
+			System.out.println("++++++++++++++++++++++++++++++++++++++");
+			
+			//돈을 입력 받아야 함.
+			if(first) {
+				System.out.print("돈을 넣어주세요: ");
+				money = sc.nextInt();
+				first = false;
+			}
+			
+			System.out.print("메뉴를 선택 하세요: :");
+			int num = sc.nextInt();
+			
+			//가격을 확인해서 돈이 충분한지 검사
+			if (money >= price[num-1]) {
+				//재고가 충분한지 확인
+				if(stock[num-1]>0) {
+					money = money - price[num-1];
+					stock[num-1]--;
+					profit += price[num-1];
+					System.out.println(box[num-1]+"이 나왔습니다. 시원하게 드세요");
+				}else {
+					System.out.println("현재 재고가 부족합니다.");
+					continue;
+				}
+			}else {
+				System.out.println("잔액이 부족합니다.");
+			}
+			
+			System.out.println("잔액 : " + money);
+			
+			if(money == 0) {
+				System.out.println("감사합니다. 다음에 또 이용해 주세요");
+				first = true;
+				continue;
+			}
+			
+			//돈이 남아있을 때 계속구매, 돈을 추가, 잔돈반환
+			System.out.println("1: 계속 구매하기  2: 금액 추가하기 3: 잔돈반환하기");
+			int num1 = sc.nextInt();
+			if(num1 == 1) {
+				continue;
+			}else if (num1 == 2) {
+				System.out.println("돈을 넣어 주세요. >>");
+				int extra = sc.nextInt();
+				money += extra;
+				System.out.println("금액이 추가 되었습니다. 잔액 :" +money);
+			}else if (num1 ==3) {
+				System.out.println("거스름 돈 " + money + "원이 반환됩니다.");
+				System.out.println("감사합니다 또 이용해 주세요");
+				first = true;
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		init();
+		user();
+		return;
+	}
+}

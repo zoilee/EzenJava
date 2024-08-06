@@ -1,0 +1,12 @@
+package chpt05.sec01;
+
+public class Equals_Exam {
+
+	public static void main(String[] args) {
+
+		String str1 = "ȫ�浿";
+		String str2 = "ȫ�浿";
+
+	}
+
+}
