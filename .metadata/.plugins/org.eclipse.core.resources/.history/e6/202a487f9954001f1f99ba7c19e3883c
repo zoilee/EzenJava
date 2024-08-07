@@ -1,0 +1,17 @@
+package chpt06.sec08;
+
+public class Sample {
+	
+	private int num;
+	private String name;
+	private Boolean real;
+	
+	//필드를 쓰기 setter 필드를 읽 getter
+	public void setNum(int num){
+		this.num = num;
+	}
+	
+	public void getNum() {
+		return this.num;
+	}
+}
