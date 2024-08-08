@@ -1,0 +1,18 @@
+package chpt06.sec09.singletone;
+
+public class LightManager_Exam {
+
+	public static void main(String[] args) {
+		
+		ClassA classA = new ClassA();
+		ClassB classB = new ClassB();
+		
+		//classA에서 조명을 켭니다.
+		classA.performAction();
+		
+		//lightManager의 조명상태
+		
+
+	}
+
+}
