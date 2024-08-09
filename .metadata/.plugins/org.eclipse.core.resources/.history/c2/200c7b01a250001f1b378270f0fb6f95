@@ -1,9 +1,0 @@
-package chpt06.sec01;
-
-public class Car {
-	//필드
-	String model = "현대";
-	boolean start = true;
-	int speed = 60;
-	
-}
