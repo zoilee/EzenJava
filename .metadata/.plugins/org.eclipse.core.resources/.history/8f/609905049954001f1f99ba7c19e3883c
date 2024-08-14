@@ -1,7 +1,0 @@
-package chpt06.sec08;
-
-public class Sample {
-	private int num;
-	private String name;
-	private Boolean real;
-}
