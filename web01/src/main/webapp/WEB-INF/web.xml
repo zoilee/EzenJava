@@ -18,4 +18,12 @@
   	<servlet-name>Hello</servlet-name>
   	<url-pattern>/hi</url-pattern>
   </servlet-mapping>
+  <context-param>
+  	<param-name>userid</param-name>
+  	<param-value>admin</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>userpass</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
 </web-app>

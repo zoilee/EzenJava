@@ -10,4 +10,5 @@
     <fullyQualifiedTypeName name="chpt07.sec04.A"/>
     <fullyQualifiedTypeName name="chpt08.sec01.RemoteControl"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 </qualifiedTypeNameHistroy>

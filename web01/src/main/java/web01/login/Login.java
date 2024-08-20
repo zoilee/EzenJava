@@ -3,6 +3,7 @@ package web01.login;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,20 +20,30 @@ public class Login extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		String userid = "admin";
-		String userpass = "1234";
+		ServletContext context = this.getServletContext();
+		//getInitParameter(name)
+		String userid = context.getInitParameter("userid");
+		String userpass = context.getInitParameter("userpass");
+//		String userid = "admin";
+//		String userpass = "1234";
 		String yname = request.getParameter("yname");
 		String ypass = request.getParameter("ypass");
 		
+		
+		
+		
 		PrintWriter out = response.getWriter();
+		
+		
 		if(userid.equals(yname) && userpass.equals(ypass)) {
 			out.println("<html><header></header><body>");
-			out.println("<p>환영합니다!</p>");
+			out.println("<p>" + yname + "님 반갑습니다. 로그인 되었습니다. </p>");
 			out.println("</body></html>");
-		}else {
+		}else {			
 			out.println("<html><header></header><body>");
-			out.println("<p>아이디 및 비밀번호가 틀렸습니다.</p>");
+			out.println("<p>아이디 및 비밀번호가 틀렸습니다. 다시 <a href=\"login.html\">확인</a>하세요</p>");
 			out.println("</body></html>");
+			out.close();
 		}
 
 	}
