@@ -29,12 +29,17 @@ public class GetParameter3 extends HttpServlet {
 		int num = Integer.parseInt(request.getParameter("num")); 
 		String name = request.getParameter("name");
 		double avg = Double.parseDouble(request.getParameter("avg"));
+		String[] langs = request.getParameterValues("lang");
 		
 
 		out.println("<p> 번호 : "+num+"</p>");
 		out.println("<p> 이름 : "+name+"</p>");
 		out.println("<p> 평균점수 : "+avg+"</p>");
-		
+		out.println("<p> 사용가능 언어 : ");
+		for(int i=0; i < langs.length; i++) {
+			out.print(langs[i] + ", ");
+		}
+		out.println("</p>");
 		out.println("</body></html>");
 		out.close();
 	

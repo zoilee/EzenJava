@@ -12,4 +12,5 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
     <fullyQualifiedTypeName name="javax.servlet.annotation.WebInitParam"/>
+    <fullyQualifiedTypeName name="work1.MemberService"/>
 </qualifiedTypeNameHistroy>
