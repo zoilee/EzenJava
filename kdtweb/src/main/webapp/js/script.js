@@ -1,17 +1,41 @@
 $(function(){
       $("#rid").change(function(){
         if($(this).is(":checked")){
-            alert("PC방, 관공서등에서 사용하지 마세요.");
+            alert("게임방, 관공서등 공공기관에서는 사용하지 마세요.");
         }
       });
 
-	const userIdFromCookie = getCookie('userid');
-	if(userIdFromCookie){
-		$("#userid").val(userIdFromCookie);
-	}
-	
-	
-    $('#loginform').validate({
+    const userIdFromCookie = getCookie('userid');
+    if(userIdFromCookie) {
+      $("#userid").val(userIdFromCookie);
+    }
+
+
+   /*** 회원가입 스크립트 **/
+   $("#emailDomain2").hide();
+   $("#emailDomain").change(function(){
+      if($(this).val() === 'act'){
+        $("#emailDomain2").show().val("");
+        $("#emailDomain2").focus();
+        $("#emailDomain").attr("readonly", true);
+      }else{
+        $("#emailDomain2").hide();
+        $("#emailDomain").attr("readonly", false);
+      }
+   }); 
+ 
+    $.validator.setDefaults({
+       onkeyup: false,
+       onclick: false,
+       onfocusout: false,
+       showErrors: function(errorMap, errorList){
+          if(this.numberOfInvalids()){
+             alert(errorList[0].message);
+          }
+       }
+    });
+ 
+     $('#loginform').validate({
         debug: false, 
         rules: {
             userid: "required",
@@ -20,37 +44,69 @@ $(function(){
         messages: {
             userid: "아이디를 입력하세요.",
             userpass: "비밀번호를 입력하세요."
-        },
-        showErrors: function(errorMap, errorList){
-          if(errorList.length){
-            if(!this.alreadyAlerted) {
-               alert(errorList[0].message); 
-               this.alreadyAlerted = true; 
-            }
-          }else{
-            this.alreadyAlerted = false;
-          }
         }
-        
     });
+    
+    $('#registerform').validate({
+       rules:{
+          userid: {
+             required: true,
+             minlength: 3,
+             maxlength: 9
+          },
+          usrpass: { required: true, minlength: 5},
+          reusrpass: { required: true, equalTo: "#usrpass" },
+          username: { required: true },
+          emailid: { required: true },
+          emailDomain : {
+             require_from_group : [1, ".emailgroup"]
+          },
+          emailDomain2 : {
+             require_from_group : [1, ".emailgroup"]
+          }
+       },
+       messages: {
+          userid: {
+             required: '필수 입력 항목입니다.',
+             minlength: '{0}글자 이상 입력하세요.',
+             maxlength: '아이디가 너무 길어요. {0}자 이하로 입력하세요.'
+          },
+         usrpass: {
+             required: '비밀번호를 입력하세요.',
+             minlength: '비밀번호는 최소 {0}자 이상이어야 합니다.'
+         },
+         reusrpass: {
+             required: '비밀번호를 확인하세요.',
+             equalTo: '비밀번호가 일치하지 않습니다.' // 두 비밀번호가 일치하지 않을 때의 메시지
+         },
+          username: '이름을 입력하세요.',
+          emailid: '이메일을 입력하세요.',
+          emailDomain: '이메일을 입력하세요.',
+          emailDomain2: '이메일을 입력하세요.'
+       },
+       submitHandler: function(form){
+          const email = $('#emailid').val() + "@" + ($("#emailDomain").val()==='act'? $('#emailDomain2').val():$('#emailDomain').val());
+          $("#email").val(email);
+          const tel = $("#tel1").val() + "-" + $("#tel2").val() + "-" + $("#tel3").val();
+          $("#tel").val(tel);        
+          
+          form.submit();                                      
+       }
+    });
+    
 });
 
-
 function setCookie(name, value, exp){
-	const date = new Date();
-	date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-	document.cookie = name + '=' + value + ';expires='+date,toUTCString() + ";path=/";
+    const date = new Date();
+    date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000); // 쿠키 유효 기간 설정
+    document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
 }
 
 function getCookie(name){
-	const value = document.cookie.match('(^|;)?' + name + '=([^;]*)(;|$)');
-	// (^|;) 쿠키 이름 앞에 시작부분(^)이거나 세미콜론 ; 이 올 수 있음 (쿠키가 여려개일 경우 ;로 구분됨)
-	//? 쿠키이름 세미콜론 사이에 공백이 있을 수 있다.(있을수도 없을수도)
-	//[^;]* 세미콜론이 나오기 전까지 모든 문자를 캡처한다. 세미콜론이 아닌 0개 이상의 문자
-	//끝나는 지점앞에 ;이 온다. 아니면 끝이 아니다.
-	return value? value[2]:null;
+   const value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+   return value? value[2]:null;
 }
 
 function delCookie(name){
-	document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+   document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 }
