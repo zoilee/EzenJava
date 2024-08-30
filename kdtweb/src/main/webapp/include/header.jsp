@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userid = (String) session.getAttribute("userid");
+	String sessionUserid = (String) session.getAttribute("userid");
 %>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
         <header class="position-absolute ">
             <div class="logo"><a href=""></a><img src="images/logo.png" alt=""></div>
             <%
-            	if(userid == null){
+            	if(sessionUserid == null){
             %>
             
             
@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-success btn-block">로 그 인</button>
             </form>
             <div class="d-felx justify-content-between px-2 mb-5">
-            	<a href="#">아이디/비밀번호 찾기</a>
+            	<a href="findidpass.jsp">아이디/비밀번호 찾기</a>
             	<a href="register.jsp">회원가입</a>
             </div>
             <%
@@ -46,7 +46,7 @@
             %>
             <div id="loginform" class="login">
             	<h5 class="text-center">
-            		<%=userid %>님 로그인
+            		<%=sessionUserid %>님 로그인
             	</h5>
             	<p class="text-center">
             		<a href="logout.jsp">로그아웃</a>

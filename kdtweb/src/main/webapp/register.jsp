@@ -3,7 +3,7 @@
 <%@ include file="include/header.jsp" %>
 <div class="row">
   <div class="col-12">
-     <div class="bg-white">
+     <div class="bg-white rg">
        <h1 class="text-center py-5">회원가입</h1>
        <p class="text-center mb-5">저의 커뮤니티 웹에 온 것을 환영합니다.</p>
        <form name="registerform" id="registerform" action="registerok" method="post">
@@ -95,9 +95,10 @@
           </ul>
        </form>
      </div>
-     
+     </div>
   </div>
 </div>
+<%@ include file="include/footer.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function execDaumPostcode() {
@@ -148,4 +149,3 @@
         }).open();
     }
 </script>
-<%@ include file="include/footer.jsp" %>

@@ -26,6 +26,7 @@ public class RegisterOk extends HttpServlet {
 		res.setContentType("text/html;charset=utf-8");
 		req.setCharacterEncoding("utf-8");
 		PrintWriter out = res.getWriter();
+		int postcode = 0;
 		
 		String userid = req.getParameter("userid");
 		String userpass = req.getParameter("userpass");
@@ -33,12 +34,20 @@ public class RegisterOk extends HttpServlet {
 		String email = req.getParameter("email");
 		String tel = req.getParameter("tel");
 		String userpost = req.getParameter("postcode");
+		if(userpost !=null && !userpost.isEmpty()) {
+			try{
+				postcode = Integer.parseInt(userpost);
+			}catch(NumberFormatException e) {
+				postcode = 0;
+			}
+		}
 		String useraddr = req.getParameter("useraddr1");
 		String useraddr2 = req.getParameter("useraddr2");
 		String useraddrexc = req.getParameter("useraddrexc");
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		
 		MySqlConnect dbcon = new MySqlConnect();
 		try {
 			conn = dbcon.getConn();
@@ -53,7 +62,7 @@ public class RegisterOk extends HttpServlet {
 			pstmt.setString(3, username);
 			pstmt.setString(4, email);
 			pstmt.setString(5, tel);
-			pstmt.setInt(6, Integer.parseInt(userpost));
+			pstmt.setInt(6, postcode);
 			pstmt.setString(7, useraddr);
 			pstmt.setString(8, useraddr2);
 			pstmt.setString(9, useraddrexc);
