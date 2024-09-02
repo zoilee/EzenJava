@@ -9,7 +9,7 @@ public class User {
 	private int userpost;
 	private String useraddr1;
 	private String useraddr2;
-	private String useraddexc;
+	private String useraddrexc;
 	
 	
 	public String getUserid() {
@@ -60,16 +60,16 @@ public class User {
 	public void setUseraddr2(String useraddr2) {
 		this.useraddr2 = useraddr2;
 	}
-	public String getUseraddexc() {
-		return useraddexc;
+	public String getUseraddrexc() {
+		return useraddrexc;
 	}
-	public void setUseraddexc(String useraddexc) {
-		this.useraddexc = useraddexc;
+	public void setUseraddrexc(String useraddrexc) {
+		this.useraddrexc = useraddrexc;
 	}
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", userpass=" + userpass + ", username=" + username + ", useremail="
 				+ useremail + ", usertel=" + usertel + ", userpost=" + userpost + ", useraddr1=" + useraddr1
-				+ ", useraddr2=" + useraddr2 + ", useraddexc=" + useraddexc + "]";
+				+ ", useraddr2=" + useraddr2 + ", useraddexc=" + useraddrexc + "]";
 	}
 }

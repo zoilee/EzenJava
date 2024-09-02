@@ -49,6 +49,7 @@
             		<%=sessionUserid %>님 로그인
             	</h5>
             	<p class="text-center">
+            		<a href="editmem.jsp">회원정보수정</a>
             		<a href="logout.jsp">로그아웃</a>
             	</p>
             </div>

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kdtweb.dao.KdtwebDao;
 import kdtweb.dao.MySqlConnect;
 
 /**
@@ -36,9 +37,9 @@ public class LoginOk extends HttpServlet {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		MySqlConnect dbcon = new MySqlConnect();
+		//MySqlConnect dbcon = new MySqlConnect();
 		ResultSet rs = null;
-		
+		KdtwebDao dbcon = new KdtwebDao();
 		
 		if(userid.equals("admin")) {
 			//servlet context로 검사
@@ -70,8 +71,9 @@ public class LoginOk extends HttpServlet {
 				pstmt.setString(1, userid);
 				pstmt.setString(2, userpass);
 				rs = pstmt.executeQuery();
-
+					//검증성공
 					if(rs.next()) {						
+						//세션 및 쿠키 생성
 						HttpSession session = request.getSession();
 						session.setAttribute("userid", userid);
 						if("ok".equals(rid)) {
@@ -80,14 +82,18 @@ public class LoginOk extends HttpServlet {
 							response.addCookie(userCookie);
 						}
 						response.sendRedirect("index.jsp");
-					}else {
+					}else {//검증실패
 						String alert = "<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); location.href='index.jsp';</script>";
 						out.println(alert);
 					}
 				
 				
-			}catch(SQLException | ClassNotFoundException e){
-				
+			}catch(SQLException e){
+				e.printStackTrace();
+			}finally {
+				if(rs != null) try {rs.close();}catch(SQLException e) {}
+				if(pstmt != null) try {pstmt.close();}catch(SQLException e) {}
+				if(conn != null) try {conn.close();}catch(SQLException e) {}
 			}
 			
 			
