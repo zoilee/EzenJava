@@ -2,9 +2,6 @@ package kdtweb.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
@@ -16,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kdtweb.dao.KdtwebDao;
-import kdtweb.dao.MySqlConnect;
-
+import kdtweb.dao.members.SelectOneMem;
 /**
  * Servlet implementation class LoginOk
  */
@@ -35,11 +30,6 @@ public class LoginOk extends HttpServlet {
 		String userpass = request.getParameter("userpass");
 		String rid = request.getParameter("rid");
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		//MySqlConnect dbcon = new MySqlConnect();
-		ResultSet rs = null;
-		KdtwebDao dbcon = new KdtwebDao();
 		
 		if(userid.equals("admin")) {
 			//servlet context로 검사
@@ -63,20 +53,16 @@ public class LoginOk extends HttpServlet {
 			
 		}else {
 			//db에서 검사
-			String sql = "select * from members where userid=? and userpass=?";
+			SelectOneMem mem = new SelectOneMem();
 			try{
-				conn = dbcon.getConn();
+				int ct = mem.selectOneMem(userid, userpass);
 				System.out.println("db접속 성공");
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, userid);
-				pstmt.setString(2, userpass);
-				rs = pstmt.executeQuery();
-					//검증성공
-					if(rs.next()) {						
-						//세션 및 쿠키 생성
-						HttpSession session = request.getSession();
-						session.setAttribute("userid", userid);
-						if("ok".equals(rid)) {
+				//검증성공
+				if(ct > 0) {						
+					//세션 및 쿠키 생성
+					HttpSession session = request.getSession();
+					session.setAttribute("userid", userid);
+					if("ok".equals(rid)) {
 							Cookie userCookie = new Cookie("userid",userid);
 							userCookie.setMaxAge(60*60*24*1);
 							response.addCookie(userCookie);
@@ -90,13 +76,7 @@ public class LoginOk extends HttpServlet {
 				
 			}catch(SQLException e){
 				e.printStackTrace();
-			}finally {
-				if(rs != null) try {rs.close();}catch(SQLException e) {}
-				if(pstmt != null) try {pstmt.close();}catch(SQLException e) {}
-				if(conn != null) try {conn.close();}catch(SQLException e) {}
-			}
-			
-			
+			}						
 		}
 		
 	}

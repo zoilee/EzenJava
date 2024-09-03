@@ -58,7 +58,7 @@ $(function(){
              required: true,
              minlength: 3,
              maxlength: 9,
-             customPattern : /^[a-zA-z0-0]{3,0}$/,
+             customPattern : /^[a-zA-Z0-9]{3,9}$/,
              remote: "findid"
           },
           usrpass: { required: true, minlength: 5},

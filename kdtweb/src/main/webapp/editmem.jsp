@@ -30,14 +30,14 @@
         	String useraddr2 = rs.getString("useraddr2");
         	String useraddrexc = rs.getString("useraddrexc");
  %>      
-       <form name="registerform" id="registerform" action="registerok" method="post">
+       <form name="registerform" id="registerform" action="editok" method="post">
           <ul class="registerul">
              <li class="d-flex py-4">
                 <label for="userid" class="col-2 text-right">아이디</label>
                 <div class="col-4">
                    <input type="text" name="userid" id="usrid"
                     placeholder="아이디" 
-                    class="form-control"
+                    class="form-control" readonly
                     value="<%=userid%>">
                 </div>
              </li>
@@ -137,6 +137,7 @@
              <li class="text-center pt-1 pb-5">
                    <button type="reset" class="btn btn-warning py-2 px-5 mx-2">취소</button>
                    <button type="submit" class="btn btn-success py-2 px-5 mx-2">전송</button>
+                   
              </li>      
           </ul>
        </form>

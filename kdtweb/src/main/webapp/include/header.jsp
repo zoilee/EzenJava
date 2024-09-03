@@ -25,7 +25,7 @@
 <body>
     <div class="container position-relative pl-300">
         <header class="position-absolute ">
-            <div class="logo"><a href=""></a><img src="images/logo.png" alt=""></div>
+            <div class="logo"><a href="#"></a><img src="images/logo.png" alt=""></div>
             <%
             	if(sessionUserid == null){
             %>
@@ -43,16 +43,36 @@
             </div>
             <%
             	}else{
+            	if(sessionUserid.equals("admin")){
+            %>
+            <div id="loginform" class="login">
+            	<h5 class="text-center">
+            		<%=sessionUserid %>님 로그인
+            	</h5>
+            	<ul class="list-group">
+            		<li class="list-group-item">
+            			<a href="editmem.jsp">정보수정</a>
+            		</li>
+            		<li class="list-group-item">
+            			<a href="mem-list.jsp">회원관리</a>
+            		</li>
+            		<li class="list-group-item">
+            			<a href="logout.jsp">로그아웃</a>
+            		</li>
+            	</ul>
+            </div>
+            <%
+            	}else{
             %>
             <div id="loginform" class="login">
             	<h5 class="text-center">
             		<%=sessionUserid %>님 로그인
             	</h5>
             	<p class="text-center">
-            		<a href="editmem.jsp">회원정보수정</a>
-            		<a href="logout.jsp">로그아웃</a>
-            	</p>
+            		<a href="editmem.jsp">회원정보수정</a> | <a href="logout.jsp">로그아웃</a>
+				</p>
             </div>
-            <% } %>
+            <% } 
+            }%>
             <div>이미지배너</div>
         </header>

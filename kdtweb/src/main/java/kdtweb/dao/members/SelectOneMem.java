@@ -17,15 +17,9 @@ public class SelectOneMem {
 	private ResultSet rs = null;
 	
 	
-	public User selectOneMem(String userid) throws SQLException{
+	public int selectOneMem(String userid, String userpass) throws SQLException{
 		
-		User user = null;
-		
-		return user;
-	}
-	
-	public int SelectOneMem(String userid, String userpass) throws SQLException{
-		int res = 0;
+		int res = 0;	
 		String sql = "select * from members where userid=? and userpass=?";
 		try {
 			conn = this.dao.getConn();
@@ -35,7 +29,7 @@ public class SelectOneMem {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				
+				res = 1;
 			}
 			
 		}catch(SQLException e) {
