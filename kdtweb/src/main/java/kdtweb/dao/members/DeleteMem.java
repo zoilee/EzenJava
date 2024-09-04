@@ -33,4 +33,22 @@ public class DeleteMem {
 		
 		return res;
 	}
+	public int deleteMem(int id) throws SQLException{
+		int res = 0;
+		String sql = "delete from members where id=?";
+		try {
+			
+			conn = dao.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			res = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			reso.closeResource(conn, pstmt);
+		}
+		
+		return res;
+	}
 }

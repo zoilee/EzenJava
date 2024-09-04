@@ -51,9 +51,6 @@
             	</h5>
             	<ul class="list-group">
             		<li class="list-group-item">
-            			<a href="editmem.jsp">정보수정</a>
-            		</li>
-            		<li class="list-group-item">
             			<a href="mem-list.jsp">회원관리</a>
             		</li>
             		<li class="list-group-item">

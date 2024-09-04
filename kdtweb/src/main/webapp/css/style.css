@@ -179,12 +179,17 @@ footer{
     color: #fff;
 }
 
-
-
-
-
 @media (min-width: 1200px){
     .container, .container-lg, .container-md, .container-sm, .container-xl{
         max-width: 1340px;
     }
+}
+
+/******************* admin list **********/
+.memtable{
+	font-size:14px;
+}
+.memtable th{
+	text-align:center;
+	font-weight:600;
 }

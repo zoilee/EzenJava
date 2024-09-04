@@ -18,7 +18,7 @@ public class UpdateMem {
 
 	public int updateMember(User user) throws SQLException{
 		int rs = 0;
-		String sql = "UPDATE members SET userpass=?, username=?, useremail=?, usertel=?, userpost=?, useraddr1=?, useraddr2=?, useraddrexc=? where userid?";
+		String sql = "UPDATE members SET userpass=?, username=?, useremail=?, usertel=?, userpost=?, useraddr1=?, useraddr2=?, useraddrexc=? where userid=?";
 		
 		try {
 			conn = this.dao.getConn();
@@ -45,4 +45,24 @@ public class UpdateMem {
 		}
 		return rs;
 	}
+	
+	public int adminMemEdit(int id, int grade) {
+		int rs = 0;
+		String sql = "UPDATE members SET grade=? where id = ?";
+		try {
+			conn = this.dao.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, grade);
+			pstmt.setInt(2, id);
+			rs = pstmt.executeUpdate();
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			reso.closeResource(conn, pstmt);
+		}
+	
+		return rs;
+	}
+	
 }

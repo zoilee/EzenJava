@@ -38,7 +38,7 @@ public class SelectMem {
 				user.setUseraddr1(rs.getString("useraddr1"));
 				user.setUseraddr2(rs.getString("useraddr2"));
 				user.setUseraddrexc(rs.getString("useraddrexc"));
-				user.setRdate(rs.getTimestamp("radte"));
+				user.setRdate(rs.getTimestamp("rdate"));
 				user.setGrade(rs.getInt("grade"));
 				userList.add(user);
 				
