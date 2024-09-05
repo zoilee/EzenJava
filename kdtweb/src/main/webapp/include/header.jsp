@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String sessionUserid = (String) session.getAttribute("userid");
-%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,11 +25,9 @@
     <div class="container position-relative pl-300">
         <header class="position-absolute ">
             <div class="logo"><a href="#"></a><img src="images/logo.png" alt=""></div>
-            <%
-            	if(sessionUserid == null){
-            %>
-            
-            
+      
+        <c:choose>
+          <c:when test="${sessionScope.userid == null}">    
             <form id="loginform" class="login" method="post" action="loginok">
                 <input type="text" class="form-control" name="userid" id="userid" placeholder="아이디">
                 <input type="password" class="form-control" name="userpass" id="userpass" placeholder="비밀번호">
@@ -41,13 +38,12 @@
             	<a href="findidpass.jsp">아이디/비밀번호 찾기</a>
             	<a href="register.jsp">회원가입</a>
             </div>
-            <%
-            	}else{
-            	if(sessionUserid.equals("admin")){
-            %>
+          </c:when>
+          <c:when test="${sessionScope.userid == 'admin'}">
             <div id="loginform" class="login">
             	<h5 class="text-center">
-            		<%=sessionUserid %>님 로그인
+            		${sessionScope.userid}님 로그인
+            		
             	</h5>
             	<ul class="list-group">
             		<li class="list-group-item">
@@ -58,18 +54,17 @@
             		</li>
             	</ul>
             </div>
-            <%
-            	}else{
-            %>
+          </c:when>
+		  <c:otherwise>
             <div id="loginform" class="login">
             	<h5 class="text-center">
-            		<%=sessionUserid %>님 로그인
+            		${sessionScope.userid}님 로그인
             	</h5>
             	<p class="text-center">
             		<a href="editmem.jsp">회원정보수정</a> | <a href="logout.jsp">로그아웃</a>
 				</p>
             </div>
-            <% } 
-            }%>
+          </c:otherwise>
+         </c:choose>
             <div>이미지배너</div>
         </header>

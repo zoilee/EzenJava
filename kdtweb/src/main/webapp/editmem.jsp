@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" import="kdtweb.dao.MySqlConnect, java.sql.*" %>
 <%@ include file="include/header.jsp" %>
 <%
+   HttpSession ses = request.getSession();
+   String sessionUserid = (String) ses.getAttribute("userid");
+
    MySqlConnect connBean = new MySqlConnect();
    Connection conn = null;
    PreparedStatement st = null;
@@ -18,7 +21,7 @@
     	conn = connBean.getConn();
     	String sql = "select * from members where userid=?";
     	st = conn.prepareStatement(sql);
-    	st.setString(1, sessionUserid);
+    	st.setString(1, sessionUserid );
         rs = st.executeQuery();
         while(rs.next()){
         	String userid = rs.getString("userid");
