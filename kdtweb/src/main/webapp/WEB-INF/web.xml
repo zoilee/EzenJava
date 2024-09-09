@@ -10,9 +10,8 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-
-   <context-param>
-  	<param-name>userpass</param-name>
-  	<param-value>admin</param-value>
+  <context-param>
+     <param-name>userpass</param-name>
+     <param-value>admin</param-value>
   </context-param>
 </web-app>

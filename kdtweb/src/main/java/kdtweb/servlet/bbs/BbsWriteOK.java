@@ -13,16 +13,12 @@ import javax.servlet.http.HttpSession;
 import kdtweb.beans.BoardDto;
 import kdtweb.dao.bbs.Board;
 
-/**
- * Servlet implementation class BbsWriteOK
- */
+
 @WebServlet("/bbswriteok")
-public class BbsWriteOK extends HttpServlet {
-
-
+public class BbsWriteOk extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		HttpSession session = request.getSession();
 		BoardDto bbsDto = new BoardDto();
 		Board bbs = new Board();
@@ -31,14 +27,18 @@ public class BbsWriteOK extends HttpServlet {
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
 		String writer = request.getParameter("writer");
-		String userid = (String) request.getAttribute("userid");
-		String password = request.getParameter("password");
+		String userid = (session.getAttribute("userid") != null)?
+				                  (String)session.getAttribute("userid"):"guest";
+		
+		String password = (session.getAttribute("userid") != null)? 
+				             (String)session.getAttribute("userid"):
+				              request.getParameter("password");
 		
 		bbsDto.setTitle(title);
 		bbsDto.setContents(contents);
 		bbsDto.setWriter(writer);
-		bbsDto.setUserid(userid);
 		bbsDto.setPassword(password);
+		bbsDto.setUserid(userid);
 		int rs = 0;
 		try {
 			rs = bbs.inserBoard(bbsDto);
@@ -46,17 +46,15 @@ public class BbsWriteOK extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().write(rs);
-		
-		//3. insert 메소드에다 전송
-		
+		response.setContentType("application/json; charset=utf-8");
+		String result = "{\"result\": "+ rs +" }";
+        response.getWriter().write(result);
+        response.getWriter().flush();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

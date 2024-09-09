@@ -3,20 +3,20 @@ package kdtweb.beans;
 import java.sql.Timestamp;
 
 public class BoardDto {
-	private long num;
-	private String title;
-	private String contents;
-	private String writer;
-	private int count;
-	private Timestamp wdate;
-	private String userid;
-	private String password;
-	
-	
-	
-	public String getUserid() {
-		return userid;
-	}
+   private long num;
+   private String title;
+   private String contents;
+   private String writer;
+   private int count;
+   private Timestamp wdate;
+   private String userid;
+   private String password;
+
+   private String viewDate;
+
+   public String getUserid() {
+	return userid;
+   }
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
@@ -27,7 +27,7 @@ public class BoardDto {
 		this.password = password;
 	}
 	public long getNum() {
-		return num;
+			return num;
 	}
 	public void setNum(long num) {
 		this.num = num;
@@ -62,5 +62,10 @@ public class BoardDto {
 	public void setWdate(Timestamp wdate) {
 		this.wdate = wdate;
 	}
-
+	public String getViewDate() {
+		return viewDate;
+	}
+	public void setViewDate(String viewDate) {
+		this.viewDate = viewDate;
+	}
 }

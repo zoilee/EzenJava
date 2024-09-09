@@ -21,7 +21,7 @@
     	conn = connBean.getConn();
     	String sql = "select * from members where userid=?";
     	st = conn.prepareStatement(sql);
-    	st.setString(1, sessionUserid );
+    	st.setString(1, sessionUserid);
         rs = st.executeQuery();
         while(rs.next()){
         	String userid = rs.getString("userid");
@@ -140,7 +140,6 @@
              <li class="text-center pt-1 pb-5">
                    <button type="reset" class="btn btn-warning py-2 px-5 mx-2">취소</button>
                    <button type="submit" class="btn btn-success py-2 px-5 mx-2">전송</button>
-                   
              </li>      
           </ul>
        </form>
@@ -168,6 +167,7 @@
       </div>
      </div>
   </div>
+
 <%@ include file="include/footer.jsp" %>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

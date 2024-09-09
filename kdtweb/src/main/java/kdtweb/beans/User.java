@@ -3,32 +3,53 @@ package kdtweb.beans;
 import java.sql.Timestamp;
 
 public class User {
-	private int id;
-	private String userid;
-	private String userpass;
-	private String username;
-	private String useremail;
-	private String usertel;
-	private int userpost;
-	private String useraddr1;
-	private String useraddr2;
-	private String useraddrexc;
-	private Timestamp rdate;
-	private int grade;
 	
+   private int id;	
+   private String userid;	
+   private String userpass;
+   private String username;
+   private String useremail;
+   private String usertel;
+   private int userpost;
+   private String useraddr1;
+   private String useraddr2;
+   private String useraddrexc;
+   private Timestamp rdate;
+   private int grade;
+   
+   
+   public Timestamp getRdate() {
+	return rdate;
+	}
 	
-	public int getId() {
-		return id;
+	public void setRdate(Timestamp rdate) {
+		this.rdate = rdate;
 	}
-	public void setId(int id) {
-		this.id = id;
+	
+	public int getGrade() {
+		return grade;
 	}
-	public String getUserid() {
-		return userid;
+	
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+
+   public int getId() {
+	return id;
+   }
+
+   public void setId(int id) {
+	this.id = id;
+   }
+   
+   public String getUserid() {
+	 return userid;
+   }
+   
+   public void setUserid(String userid) {
+	  this.userid = userid;
+   }
+   
 	public String getUserpass() {
 		return userpass;
 	}
@@ -77,18 +98,7 @@ public class User {
 	public void setUseraddrexc(String useraddrexc) {
 		this.useraddrexc = useraddrexc;
 	}
-	public Timestamp getRdate() {
-		return rdate;
-	}
-	public void setRdate(Timestamp rdate) {
-		this.rdate = rdate;
-	}
-	public int getGrade() {
-		return grade;
-	}
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userid=" + userid + ", userpass=" + userpass + ", username=" + username
@@ -97,4 +107,6 @@ public class User {
 				+ ", grade=" + grade + "]";
 	}
 
+
+		   
 }
