@@ -10,7 +10,7 @@ header{
     width:300px;
     background:#fff;
     padding:50px 30px;
-    height:calc(100% - 50px);
+    height:calc(100% - 30px);
 }
 .logo img{
     max-width:100%;
@@ -200,6 +200,10 @@ footer{
 	border-bottom:2px solid #333;
 	margin-bottom:40px;
 }
+.bbslist a{
+	color:#212529;
+	text-decoration:none;
+}
 .bbslist th{
 	padding-top:10px;
 	padding-bottom:10px;
@@ -260,8 +264,8 @@ section.view{
 	
 }
 .view-head{
-	margin:20px 30px;
-	border-bottom:1px solid #333;
+	pading:20px 30px;
+	border-bottom:1px solid #ddd;
 	font-size:18px;
 	font-weight:600;
 }
@@ -286,7 +290,6 @@ section.view{
 	top:5px;
 	right:20px;
 	position:absolute;
-	margin-right:15px;
 }
 .contents-box i{
 	margin-right:15px;
@@ -322,3 +325,36 @@ section.view{
 .bbspass>.password{
 	margin-bottom:40px;
 }
+
+/****** paging *****/
+/* my work
+        #table{
+            list-style:none;
+            width:800px;
+            margin:100px auto;
+            justify-content:center;
+            display:flex;
+        }
+        #table li{
+            width:40px;
+            height:40px;
+            text-align:center;
+            line-height:40px;
+            border:1px solid #333;
+            border-right:none;
+            cursor:pointer;
+        }
+        #table li:last-child{
+            border-right:1px solid #333;
+        }
+        #table li:hover{
+            background:#ddd;
+        }
+        .active {
+            background: #333;
+            color: #fff;
+        }
+        .hidden {
+            display:none;
+        }
+*/

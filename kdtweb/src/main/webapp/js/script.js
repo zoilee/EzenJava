@@ -119,8 +119,100 @@ $(function(){
                                    
        }
     });
+/*
+//my work
+    //페이징 구현
     
-});
+   	
+    
+    const totalPosts =dbBoard.length;  // 전체 포스트 수
+    console.log(dbBoard[1]);
+
+    console.log(totalPosts);
+	const postsPerPage = 10; //페이지당 보여질 포스트 수
+	const displayPageNum = 10;	// 보여질 페이징 수
+	let currentPage = 1;
+	const totalPages = ((totalPosts - 1)/postsPerPage)+1 // 총 페이징 수	
+	
+
+
+		
+	
+	function displayPosts(page) {
+		const paging = $('#display')   //tbody
+		const table = $('#table');	//table외부
+		paging.empty();
+		table.empty();
+	
+
+	// 페이징 구현
+	const startIndex = (page - 1) * postsPerPage;
+	const endIndex = Math.min(startIndex + postsPerPage, totalPosts);
+	
+	for (let i = startIndex; i< endIndex; i++){
+		const post = dbBoard[i];
+		
+		const td = $(`
+			<tr>
+                <td id="posts">${dbBoard[i].num}</td>
+                <td class="ellipsis"><a href="bbs.jsp?mode=view&num=${dbBoard[i].num}">${dbBoard[i].title}</a></td>
+                <td class="ellipsis">${dbBoard[i].writer}</td>
+                <td>${dbBoard[i].viewDate}</td>
+                <td>${dbBoard[i].count}</td>
+            </tr> 
+		`);
+			
+        paging.append(td);
+    }
+    //페이징 버튼
+    
+    const endPages = Math.min(Math.ceil(currentPage / displayPageNum) * displayPageNum, totalPages); // 페이지 마지막 번호
+	const startPages = Math.max(endPages - displayPageNum + 1, 1); // 페이지 시작 번호
+    
+    // Prev 버튼 생성
+    const prev = $('<li></li>').text("Prev");
+    if (page === 1) {
+        prev.addClass('hidden');
+    } else {
+        prev.on('click', function(){
+        	currentPage = page - 1 ;
+            displayPosts(currentPage);
+        });
+    }
+    table.append(prev);
+
+    // 페이지 번호 버튼 생성
+    for (let i = startPages; i <= endPages; i++) {
+        const li = $('<li></li>').text(i);
+        if (i === page) {
+            li.addClass('active');
+        }
+        li.on('click', function() {
+            currentPage = i;
+            displayPosts(i);
+        });
+        table.append(li);
+    }
+
+    // Next 버튼 생성
+    const next = $('<li></li>').text("Next");
+    if (page === totalPages) {
+        next.addClass('hidden');
+    } else {
+        next.on('click', function(){
+        	currentPage = page + 1 ;
+            displayPosts(currentPage);
+        });
+    }
+    table.append(next);
+	
+        
+    }
+    displayPosts(currentPage);
+    */
+}); //jquery
+
+
 
 function setCookie(name, value, exp){
     const date = new Date();
@@ -136,3 +228,5 @@ function getCookie(name){
 function delCookie(name){
    document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 }
+
+

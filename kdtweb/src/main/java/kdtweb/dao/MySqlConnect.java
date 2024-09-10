@@ -8,7 +8,7 @@ public class MySqlConnect {
    private String url = "jdbc:mysql://localhost:3306/kdtweb";
    private String options = "serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
    private String userid = "root";
-   private String userpass = "0119";
+   private String userpass = "z1z2z3z4";
    
    //Connection 객체 반환하는 메서드
    public Connection getConn() throws SQLException, ClassNotFoundException {

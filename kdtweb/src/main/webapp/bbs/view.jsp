@@ -6,7 +6,10 @@
 
   if(stringNum != null && !stringNum.isEmpty()){
   long num = Long.parseLong(stringNum);
-  
+  int currentPage = 1;
+  if(request.getParameter("pg") != null){
+		currentPage = Integer.parseInt(request.getParameter("pg"));
+  }
 
   BoardDto boardView = null;
   Board bbs = new Board();
@@ -20,32 +23,32 @@
      e.printStackTrace();
      
   }
-  
+  request.setAttribute("currentPage", currentPage);
   request.setAttribute("boardView", boardView);
 %>
 <section class="view">
-   <div class="view-box">
-      <div class="view-head">
-         <i class="ri-arrow-right-circle-fill"></i> 
-         ${boardView.title }
-      </div>
-      <div class="view-body">
-       <div class="contents-box">
-           <div class="wdate"><i class="ri-calendar-2-line"></i> ${boardView.wdate }</div>
-           <div class="writer"><i class="ri-user-voice-line"></i> ${boardView.writer }</div>
-           <div class="count"><i class="ri-anticlockwise-2-line"></i> ${boardView.count }</div>          
-       </div>
-       <div class="contents">
-            <p>${boardView.contents}</p>
-       </div>
-    </div>
-      <div class="view-foot">
-       <a href="?mode=list" class="btn btn-success mr-2">목록</a>
-       <a href="?mode=pass&bmode=edit&num=${boardView.num }" class="btn btn-warning mr-2">수정</a>
-       <a href="?mode=pass&bmode=del&num=${boardView.num }" class="btn btn-danger mr-2">삭제</a>
-       <a href="?mode=write" class="btn btn-success">글쓰기</a>
-    </div>
-   </div>
+	<div class="view-box">
+		<div class="view-head">
+			<i class="ri-arrow-right-circle-fill"></i> 
+			${boardView.title }
+		</div>
+		<div class="view-body">
+			<div class="contents-box">
+				<div class="wdate"><i class="ri-calendar-2-line"></i> ${boardView.wdate }</div>
+				<div class="writer"><i class="ri-user-voice-line"></i> ${boardView.writer }</div>
+				<div class="count"><i class="ri-anticlockwise-2-line"></i> ${boardView.count }</div>          
+			</div>
+			<div class="contents">
+				<p>${boardView.contents}</p>
+			</div>
+		</div>
+		<div class="view-foot">
+			<a href="?mode=list&pg=${currentPage}" class="btn btn-success mr-2">목록</a>
+			<a href="?mode=pass&bmode=edit&num=${boardView.num }&pg=${currentPage}" class="btn btn-warning mr-2">수정</a>
+			<a href="?mode=pass&bmode=del&num=${boardView.num }&pg=${currentPage}" class="btn btn-danger mr-2">삭제</a>
+			<a href="?mode=write&pg=${currentPage}" class="btn btn-success">글쓰기</a>
+		</div>
+	</div>
 </section>
 
 <% }else{ %>

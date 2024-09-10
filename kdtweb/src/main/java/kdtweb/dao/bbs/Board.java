@@ -50,6 +50,29 @@ public class Board implements BoardInterface{
       return res;
    }
    @Override
+	public int selectUserId(String userid, int num) throws SQLException {
+		int recordCount = 0;
+		String sql = "select count(*) as total from bbs_bbs where num=? and userid=?";
+		try {
+			conn = this.dao.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, userid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				recordCount = rs.getInt("total");
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+	    }finally {
+	    	reso.closeResource(conn, pstmt, rs);
+	    }
+		
+		return recordCount;
+	}
+@Override
    public int updateBoard(BoardDto bbs) throws SQLException {
       int res = 0;
       String sql = "update bbs_bbs SET title =?, contents=?, writer=? where num =?";
@@ -110,13 +133,35 @@ public class Board implements BoardInterface{
       return res;
    }
    @Override
-   public ArrayList<BoardDto> listBoard() throws SQLException {
+	public int getTotalBoardCount() throws SQLException {
+		int totalRecords = 0;
+		String sql = "select count(*) as total from bbs_bbs";
+		try {
+			conn = this.dao.getConn();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalRecords = rs.getInt("total");
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+	    }finally {
+	    	reso.closeResource(conn, pstmt, rs);
+	    }
+		
+		return totalRecords;
+	}
+   @Override
+   public ArrayList<BoardDto> listBoard(int limit, int recordsPerPage) throws SQLException {
       
       ArrayList<BoardDto> boardList = new ArrayList<>();
-      String sql = "select * from bbs_bbs order by num desc";
+      String sql = "select * from bbs_bbs order by num desc limit ?, ?";
       try {
          conn = this.dao.getConn();
          pstmt = conn.prepareStatement(sql);
+         pstmt.setInt(1, limit);
+         pstmt.setInt(2, recordsPerPage);
          rs = pstmt.executeQuery();
          
          while(rs.next()) {
@@ -124,7 +169,7 @@ public class Board implements BoardInterface{
             bbsDto.setNum(rs.getLong("num"));      
             bbsDto.setTitle(rs.getString("title"));
             bbsDto.setContents(rs.getString("contents"));
-            //bbsDto.setWriter(rs.getString("writer"));
+            bbsDto.setWriter(rs.getString("writer"));
             bbsDto.setUserid(rs.getString("userid"));
             bbsDto.setPassword(rs.getString("password"));
             bbsDto.setCount(rs.getInt("count"));
