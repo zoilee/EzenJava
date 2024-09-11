@@ -30,18 +30,94 @@
 	</c:when>
 	<c:when test="${sessionScope.userid==null || result == 0 }">
 		<div class="pass-box">
-			<p class="text-center">비밀번호를 입력하세요.</p>
+			<p class="text-center">비밀번호를 입력하세요.</p>			
 			<form action="bbspassok" class="bbspass" method="post">
+			<div class="alert alert-danger alert-dismissble fade hide">
+				<button type="button" class="close" >&times;</button>
+  				<strong>Warning!</strong> 비밀번호가 틀렸습니다.
+			</div>
+			
 				<div class="password">
 					<input type="password" name="bbspassword" id="bbspassword" class="form-control" placeholder="비밀번호"/>
 				</div>
-				<button type="reset" class="btn btn-danger">수정</button>
-				<button type="submit" class="btn btn-success">전송</button>
+				<button type="reset" class="btn btn-danger">취소</button>
+				<button type="submit" id="submit" class="btn btn-secondary" disabled>전송</button>
 				<input type="hidden" />
 			</form>
 		</div>
 	</c:when>
 	<c:when test="${result == 1 }">
-		<jsp:include page="${mode }" />
+		<c:if test="${param.bmode =='edit'}">
+			<form  id="editform" action="bbs.jsp" method="post">
+				<input type="hidden" name="mode" value="reedit">
+				<input type="hidden" name="num" value="${num}">
+				<input type="hidden" name="auth" value="ok">
+				<input type="hidden" name="pg" value="${param.pg}">
+			</form>
+			<script>
+				$(function(){
+					$("#editform").submit();
+				})
+			</script>
+		</c:if>
+		<c:if test="${param.bmode == 'del'}">
+			<script>
+				let y = confirm("정말로 삭제하시겠습니까?");
+				if(y){
+					$(function(){
+						$.ajax({
+							url:'deleteOk',
+							type:'POST',
+							data:{num: ${num}, auth:"ok"},
+							success:function(data){
+								if(data.result ==1){
+									alert("성공적으로 삭제되었습니다.");
+									location.href="bbs.jsp";
+								}else{
+									alert("데이터를 삭제하는데 문제가 발생했습니다.");
+								}
+							},
+							error: function(err){
+								alert("데이터를 삭제하는데 문제가 발생했습니다.");
+								history.go(-1);
+							}
+						
+						})
+					});
+				}else{
+					history.go(-1);
+				}
+			</script>
+		</c:if>
 	</c:when>
 </c:choose>
+<script>
+	$(function(){
+		$("#bbspassword").blur(function(){
+			const pass = $(this).val();
+			$.ajax({
+				url:'passok',
+				type:'POST',
+				data:{pass: pass, num: ${num}},
+				success:function(data){
+					if(data != 1){
+						$(".alert").removeClass("hide").addClass("show");
+						$("#submit").attr('disabled',true);
+						return false;
+					}else{
+						
+						$("#submit").removeClass("btn-secondary").addClass("btn-success").attr('disabled',false);
+						return;
+					}
+				},
+				error: function(err){
+					alert("비밀번호를 인증하는데 문제가 발생했습니다.");
+					history.go(-1);
+				}
+			})
+		});
+		$(".close").click(function(){
+			$(".alert").removeClass("show").addClass("hide");
+		})
+	})
+</script>

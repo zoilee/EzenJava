@@ -17,4 +17,5 @@ public interface BoardInterface {
 	BoardDto viewBoard(long num) throws SQLException;
 	int insertBoard(BoardDto bbs) throws SQLException;
 	int selectUserId(String userid, int num) throws SQLException;
+	int isPass(long num, String pass) throws SQLException;
 }

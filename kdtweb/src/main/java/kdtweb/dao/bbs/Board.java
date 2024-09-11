@@ -75,14 +75,15 @@ public class Board implements BoardInterface{
 @Override
    public int updateBoard(BoardDto bbs) throws SQLException {
       int res = 0;
-      String sql = "update bbs_bbs SET title =?, contents=?, writer=? where num =?";
+      String sql = "update bbs_bbs SET title =?, contents=?, writer=?, password=? where num =?";
       try{
          conn = this.dao.getConn();
          pstmt = conn.prepareStatement(sql);
          pstmt.setString(1,  bbs.getTitle());
          pstmt.setString(2, bbs.getContents());
          pstmt.setString(3, bbs.getWriter());
-         pstmt.setLong(4, bbs.getNum());
+         pstmt.setString(4, bbs.getPassword());
+         pstmt.setLong(5, bbs.getNum());
          
          res = pstmt.executeUpdate();
          
@@ -244,6 +245,30 @@ public class Board implements BoardInterface{
 public int inserBoard(BoardDto bbs) throws SQLException {
 	// TODO Auto-generated method stub
 	return 0;
+}
+@Override
+public int isPass(long num, String pass) throws SQLException {
+	
+	String query = "select count(*) as ispass from bbs_bbs where password=? and num=?";
+	int res = 0;
+	
+	try {
+		conn = this.dao.getConn();
+		pstmt=conn.prepareStatement(query);
+		pstmt.setString(1, pass);
+		pstmt.setLong(2, num);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			res = rs.getInt("ispass");
+		}
+	}catch(SQLException e) {
+		 e.printStackTrace();
+    }finally {
+       reso.closeResource(conn, pstmt);
+    }
+	
+	
+	return res;
 }
 
    

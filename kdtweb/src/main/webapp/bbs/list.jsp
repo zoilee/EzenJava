@@ -55,11 +55,11 @@
         <c:forEach var="post" items="${boardList }">
         <!-- 루프 -->
         <tr>
-           <td id = posts>${post.num }</td>
+           <td class="text-center">${post.num }</td>
            <td class="ellipsis"><a href="bbs.jsp?mode=view&num=${post.num}&pg=${paging.currentPage}">${post.title }</a> </td>
-           <td class="ellipsis">${post.writer }</td>
-           <td>${post.viewDate }</td>
-           <td>${post.count }</td>
+           <td class="ellipsis text-center">${post.writer }</td>
+           <td class="text-center">${post.viewDate }</td>
+           <td class="text-center">${post.count }</td>
         </tr>
         <!-- /루프 -->
         </c:forEach>
