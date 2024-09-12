@@ -18,4 +18,6 @@ public interface BoardInterface {
 	int insertBoard(BoardDto bbs) throws SQLException;
 	int selectUserId(String userid, int num) throws SQLException;
 	int isPass(long num, String pass) throws SQLException;
+	ArrayList<BoardDto> searchBoard(String key, String val, int limit, int recordsPerPage) throws SQLException; 
+	public int getsearchBoardCount(String key, String val) throws SQLException;
 }

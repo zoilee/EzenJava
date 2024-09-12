@@ -23,7 +23,8 @@ public class DeleteOk extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		response.setContentType("application/json; charset=utf-8");
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("utf-8");
 		
 		Board bbs = new Board();
 		long num = 0;
@@ -34,7 +35,7 @@ public class DeleteOk extends HttpServlet {
 		}
 		String auth = request.getParameter("auth");
 		
-		if(auth !="ok") {
+		if(!"ok".equals(auth)) {
 			String goOut = "<script>alert('정상적이지 않은 방법으로 접근했습니다.');location.href='bbs.jsp';</script>";
 			out.println(goOut);
 		}
@@ -47,9 +48,10 @@ public class DeleteOk extends HttpServlet {
 		
 		
 		
-		String result = "{\"result\" : "+res+"}";
-		out.print(result);
-		out.close();
+		// String result = "{\"result\" : "+res+"}";
+		out.print(res); //줄바꿈 처리를 없애고 값만 가도록
+		out.flush(); //출력스트림 전송
+		out.close(); //스트림 닫음
 	}
 
 

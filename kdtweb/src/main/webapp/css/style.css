@@ -200,6 +200,14 @@ footer{
 	border-bottom:2px solid #333;
 	margin-bottom:40px;
 }
+.search-and-button{
+	width:100%;
+	max-width:895px;
+	margin: 0px -15px 40px;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
 .bbslist a{
 	color:#212529;
 	text-decoration:none;

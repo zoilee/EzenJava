@@ -49,7 +49,8 @@ public class Board implements BoardInterface{
       
       return res;
    }
-   @Override
+   
+@Override
 	public int selectUserId(String userid, int num) throws SQLException {
 		int recordCount = 0;
 		String sql = "select count(*) as total from bbs_bbs where num=? and userid=?";
@@ -203,7 +204,7 @@ public class Board implements BoardInterface{
       }finally {
          reso.closeResource(conn, pstmt, rs);
       }
-      System.out.println(boardList);
+
       return boardList;
    }
    
@@ -241,38 +242,112 @@ public class Board implements BoardInterface{
 	   
       return bbsDto;
    }
-@Override
-public int inserBoard(BoardDto bbs) throws SQLException {
-	// TODO Auto-generated method stub
-	return 0;
-}
-@Override
-public int isPass(long num, String pass) throws SQLException {
-	
-	String query = "select count(*) as ispass from bbs_bbs where password=? and num=?";
-	int res = 0;
-	
-	try {
-		conn = this.dao.getConn();
-		pstmt=conn.prepareStatement(query);
-		pstmt.setString(1, pass);
-		pstmt.setLong(2, num);
-		rs = pstmt.executeQuery();
-		if(rs.next()) {
-			res = rs.getInt("ispass");
-		}
-	}catch(SQLException e) {
-		 e.printStackTrace();
-    }finally {
-       reso.closeResource(conn, pstmt);
-    }
-	
-	
-	return res;
-}
+	@Override
+	public int inserBoard(BoardDto bbs) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int isPass(long num, String pass) throws SQLException {
+		
+		String query = "select count(*) as ispass from bbs_bbs where password=? and num=?";
+		int res = 0;
+		
+		try {
+			conn = this.dao.getConn();
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, pass);
+			pstmt.setLong(2, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				res = rs.getInt("ispass");
+			}
+		}catch(SQLException e) {
+			 e.printStackTrace();
+	    }finally {
+	       reso.closeResource(conn, pstmt);
+	    }
+		
+		
+		return res;
+	}
 
    
-   
+	@Override
+	public ArrayList<BoardDto> searchBoard(String key, String val, int limit, int recordsPerPage) throws SQLException {
+		ArrayList<BoardDto> boardList = new ArrayList<>();
+		String query = "select * from bbs_bbs where "+key+ " like ? order by num desc limit ?, ?";
+		ResultSet rs= null;
+
+		try {
+			conn = this.dao.getConn();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + val + "%");
+			pstmt.setInt(2, limit);
+	        pstmt.setInt(3, recordsPerPage);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+	            BoardDto bbsDto = new BoardDto();   
+	            bbsDto.setNum(rs.getLong("num"));      
+	            bbsDto.setTitle(rs.getString("title"));
+	            bbsDto.setContents(rs.getString("contents"));
+	            bbsDto.setWriter(rs.getString("writer"));
+	            bbsDto.setUserid(rs.getString("userid"));
+	            bbsDto.setPassword(rs.getString("password"));
+	            bbsDto.setCount(rs.getInt("count"));
+	            bbsDto.setWdate(rs.getTimestamp("wdate"));
+	            
+	            //1. 출력은 yyyy-mm-dd 이렇게 24시간 이내의 글은 mm-dd 
+	            Timestamp wdate = rs.getTimestamp("wdate");  
+	            //wdate를 unix 타임으로 변환
+	            long wdateMills = wdate.getTime();
+	            
+	            //현재 시간을 unix 타임으로 가져옴
+	            long currentTimeMills = System.currentTimeMillis();
+	            
+	            //현재시간에서 글쓴 시간을 빼서 24시간 이내인지 확인
+	            long diffTime = currentTimeMills - wdateMills;
+	            long rsDiffTime = diffTime/(60 * 60* 1000); //시간단위로 변환
+	            
+	            SimpleDateFormat dateFormat;
+	            if(rsDiffTime < 24) {
+	               dateFormat = new SimpleDateFormat("HH:mm");
+	            }else {
+	               dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	            }
+	            bbsDto.setViewDate(dateFormat.format(new Date(wdateMills)));
+	            boardList.add(bbsDto);
+	         }
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally{
+			reso.closeResource(conn, pstmt);
+		}
+		return boardList;
+	}
+	   @Override
+		public int getsearchBoardCount(String key, String val) throws SQLException {
+			int totalRecords = 0;
+			String sql = "select count(*) as total from bbs_bbs where " + key + " like ?";
+			try {
+				conn = this.dao.getConn();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + val + "%");
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					totalRecords = rs.getInt("total");
+				}
+				System.out.println(pstmt);
+			}catch(SQLException e) {
+				e.printStackTrace();
+		    }finally {
+		    	reso.closeResource(conn, pstmt, rs);
+		    }
+			
+			return totalRecords;
+		}
 
 }
 
