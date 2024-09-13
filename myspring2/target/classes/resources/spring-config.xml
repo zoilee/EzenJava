@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  User bean 정의 -->
+	<bean id="user" class="myspring.entity.User"/>
+
+	<!--  UserSErvice bean 정의하고 User를 주입 -->
+	<bean id="userService" class="myspring.service.UserService">
+		<property name="user" ref="user"/>
+	</bean>
+	
+
+</beans>
