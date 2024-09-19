@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "exam" class="scoreCard.spring.di.entity.ScoreCardExam">
+	
+		<constructor-arg value="80" index="2"/>
+		<constructor-arg value="78" index="1"/>
+		<constructor-arg value="86" index="0"/>
+		<constructor-arg value="91" index="3"/>
+		<constructor-arg value="97" index="4"/>
+	<!-- 
+		<property name="kor" value="80" />
+		<property name="eng" value="96" />
+		<property name="hist" value="100" />
+		<property name="math" value="97" />
+		<property name="comp" value="92" />
+	-->
+	</bean>
+	
+	<!--  ExamConsole console = new KRExamConsole(exam); -->
+	<bean id = "consolekr" class="scoreCard.spring.di.ui.KRExamConsole">
+		<property name="exam" ref="exam"/>
+	</bean>
+	<bean id = "consolejp" class="scoreCard.spring.di.ui.JAPExamConsole">
+		<property name="exam" ref="exam"/>
+	</bean>
+	<bean id = "consoleen" class="scoreCard.spring.di.ui.ENGExamConsole">
+		<property name="exam" ref="exam"/>
+	</bean>
+	
+	
+	
+	
+</beans>
