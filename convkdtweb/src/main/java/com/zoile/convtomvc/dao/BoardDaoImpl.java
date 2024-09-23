@@ -8,6 +8,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int updateBoard(BoardDao dto) throws SQLException {
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

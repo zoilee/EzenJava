@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.zoile.mybatis.mapper.MemberMapper">
+  
+  	<!-- 쿼리문 : 매개변수 - parameterType 결과값 - resultType -->
+  	<select id="selectMem" parameterType="int" resultType="com.zoile.mybatis.dto.MemberDto">
+  		SELECT * FROM member WHERE id = #{id}
+  	</select>
+  	<select id="listMem" resultType="MemberDto">
+  		SELECT * FROM member ORDER BY id DESC
+  	</select>
+  	
+  	<!-- 사용자 추가 -->
+  	<insert id="insertMem" parameterType="MemberDto">
+  		INSERT INTO member (name, email) VALUES (#{name},#{email})
+  	</insert>
+  	
+  	<!-- 사용자 수정 -->
+  	<update id="updateMem" parameterType="MemberDto">
+  		UPDATE member SET name=#{name}, email=#{email} where id = #{id}
+  	</update>
+  	
+  	<!-- 사용자 삭제 -->
+  	<delete id="deleteMem" parameterType="int">
+  		DELETE FROM member WHERE id=#{id}
+  	</delete>
+  </mapper>

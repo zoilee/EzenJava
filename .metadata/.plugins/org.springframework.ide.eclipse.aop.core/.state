@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="webmvc"/>
+<aop-project name="mybatis"/>
 <aop-project name="scoreCard"/>
 <aop-project name="myspring3"/>
 <aop-project name="myspring2"/>
