@@ -6,5 +6,6 @@
 <aop-project name="myspring3"/>
 <aop-project name="myspring2"/>
 <aop-project name="convkdtweb"/>
+<aop-project name="kdtcom"/>
 <aop-project name="webjdbc01"/>
 </aop-reference-model>

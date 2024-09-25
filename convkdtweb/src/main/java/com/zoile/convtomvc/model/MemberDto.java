@@ -16,6 +16,8 @@ public class MemberDto {
 	   private String useraddrexc;
 	   private Timestamp rdate;
 	   private int grade;
+	   
+	   
 	public MemberDto(int id, String userid, String userpass, String username, String useremail, String usertel,
 			int userpost, String useraddr1, String useraddr2, String useraddrexc, Timestamp rdate, int grade) {
 		super();

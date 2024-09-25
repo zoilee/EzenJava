@@ -6,8 +6,8 @@
     <typeInfo handle="=chpt13/src&lt;chpt13.sec01{Rentable.java[Rentable" modifiers="513" timestamp="1724226848797"/>
     <typeInfo handle="=webjdbc01/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoilee.webjdbc.dao{MemberDao.java[MemberDao" modifiers="513" timestamp="1726793543565"/>
     <typeInfo handle="=webjdbc01/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoilee.webjdbc.service{MemberService.java[MemberService" modifiers="513" timestamp="1726800826341"/>
-    <typeInfo handle="=convkdtweb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoile.convtomvc.dao{BoardDao.java[BoardDao" modifiers="513" timestamp="1726816548043"/>
     <typeInfo handle="=webjdbc01/C:\/Program Files\/OpenLogic\/jdk-11.0.23.9-hotspot\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/11\/docs\/api\/=/&lt;java.lang.reflect(Member.class[Member" modifiers="1537" timestamp="1713478336000"/>
     <typeInfo handle="=mybatis/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoile.mybatis.dao{MemDao.java[MemDao" modifiers="513" timestamp="1727069476105"/>
-    <typeInfo handle="=convkdtweb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoile.convtomvc.service{MemberService.java[MemberService" modifiers="513" timestamp="1727078333324"/>
+    <typeInfo handle="=convkdtweb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoile.convtomvc.service{MemberService.java[MemberService" modifiers="513" timestamp="1727082375390"/>
+    <typeInfo handle="=convkdtweb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.zoile.convtomvc.dao{BoardDao.java[BoardDao" modifiers="513" timestamp="1727167236469"/>
 </typeInfoHistroy>
