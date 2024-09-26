@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="secloginxml"/>
 <aop-project name="webmvc"/>
+<aop-project name="secloginclass"/>
 <aop-project name="mybatis"/>
 <aop-project name="scoreCard"/>
 <aop-project name="myspring3"/>
