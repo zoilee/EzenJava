@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="secloginxml"/>
-<aop-project name="webmvc"/>
 <aop-project name="secloginclass"/>
 <aop-project name="mybatis"/>
 <aop-project name="scoreCard"/>
-<aop-project name="myspring3"/>
 <aop-project name="myspring2"/>
-<aop-project name="convkdtweb"/>
 <aop-project name="kdtcom"/>
 <aop-project name="webjdbc01"/>
+<aop-project name="spring1002"/>
+<aop-project name="webmvc"/>
+<aop-project name="mvc1002"/>
+<aop-project name="myspring3"/>
+<aop-project name="convkdtweb"/>
 </aop-reference-model>
