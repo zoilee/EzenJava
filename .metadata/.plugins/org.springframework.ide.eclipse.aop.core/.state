@@ -8,8 +8,8 @@
 <aop-project name="kdtcom"/>
 <aop-project name="webjdbc01"/>
 <aop-project name="spring1002"/>
-<aop-project name="webmvc"/>
 <aop-project name="mvc1002"/>
+<aop-project name="webmvc"/>
 <aop-project name="myspring3"/>
 <aop-project name="convkdtweb"/>
 </aop-reference-model>
