@@ -199,11 +199,11 @@
 			});
 			
 			//가격의 합
-			totalPrice = productPrice.reduce((acc, currentVal) => acc + currentVal, 0);
+			totalPrice = productPrice.reduce((acc, currentVal) => acc + Number(currentVal), 0);
 			
 			//ajax
 			$.ajax({
-				url: 'order',
+				url: 'orderbox',
 				type: 'post',
 				data:{
 					'pdname[]' : productName,
@@ -214,11 +214,18 @@
 					//서버로 부터 pdf 파일 받아서 다운로드 처리하기
 					
 					//Binary Large Object -- 이미지, 사운드, 비디오 등등 멀티미디어 데이터를 다룰 때 사용
+					/*
 					let blob = new Blob([data], {type: 'application/pdf'});
 					let link = document.createElement('a');
 					link.href = window.URL.createObjectURL(blob);
 					link.download = 'order.pdf';
 					link.click();
+					*/
+					if(data.filePath){
+						window.location.href = data.filePath; //pdffile download
+					}else{
+						alert("pdf파일이 생성되지 않았습니다");
+					}
 				},error: function(error){
 					console.error('에러'+error);
 				}
